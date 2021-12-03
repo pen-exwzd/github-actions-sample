@@ -1,0 +1,17 @@
+name: Pushed Branch
+
+on:
+  push:
+    branches: 
+    - push/*
+  workflow_dispatch:
+
+jobs:
+  echo:
+    runs-on: macos-11
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Echo
+      run: |  
+        echo "Hello, a push action"
