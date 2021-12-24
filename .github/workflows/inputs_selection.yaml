@@ -1,0 +1,35 @@
+name: Example to input values
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        type: choice
+        description: Deploy target
+        options: 
+        - dev1
+        - dev2
+        - prod
+      message:
+        required: true
+        default: "Write some messsage here"
+      dryrun:
+        type: boolean
+        description: Is dryrun?
+        default: true
+      environment:
+        type: environment
+
+jobs:
+  echo:
+    runs-on: macos-11
+    steps:
+    - uses: actions/checkout@v2
+    - name: Show inputs
+      run: |
+        echo "target: ${{ github.event.inputs.target }}"
+        echo "message: ${{ github.event.inputs.message }}"
+        echo "dryrun: ${{ github.event.inputs.dryrun }}"
+    - name: Echo
+      run: |  
+        echo "Hello, a deletion action"
